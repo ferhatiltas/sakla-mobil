@@ -1,8 +1,7 @@
 name: sakla
 description: A new Flutter project.
 
-
-publish_to: 'none' 
+publish_to: 'none'
 
 version: 1.0.0+1
 
@@ -17,8 +16,20 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  pedantic: ^1.11.0
+
 
 flutter:
+
+
   uses-material-design: true
 
- 
+  assets:
+    - assets/
+    - assets/image/
+    - assets/font/
+
+  fonts:
+    - family: stcrmit
+      fonts:
+        - asset: assets/font/stcrmit.ttf
