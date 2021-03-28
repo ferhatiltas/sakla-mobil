@@ -11,16 +11,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  google_fonts: ^2.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   pedantic: ^1.11.0
 
-
 flutter:
-
 
   uses-material-design: true
 

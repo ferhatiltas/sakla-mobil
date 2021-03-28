@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:sakla/view/auth/splash_view.dart';
 
 void main() {
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Sakla',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        fontFamily: GoogleFonts.poppins().fontFamily,
       ),
       home: SplshView(),
     );
