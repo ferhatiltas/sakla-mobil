@@ -4,6 +4,7 @@ import 'package:sakla/core/components/bezier_container.dart';
 import 'package:sakla/core/extension/context_extension.dart';
 
 import 'login/login_view.dart';
+import 'signUp/signUp.dart';
 
 class SplshView extends StatelessWidget {
   @override
@@ -95,7 +96,9 @@ class SplshView extends StatelessWidget {
   InkWell buildRegisterButton(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(50),
-      onTap: () {},
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (_) => SignUpView()));
+      },
       child: Ink(
         height: context.height / 16,
         width: context.width / 1.1,
