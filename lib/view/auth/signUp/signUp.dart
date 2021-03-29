@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sakla_mobil/core/components/bezier_container.dart';
-import 'package:sakla_mobil/view/auth/login/login_view.dart';
+import 'package:sakla/core/components/bezier_container.dart';
+import 'package:sakla/view/auth/login/login_view.dart';
 
 class SignUpView extends StatefulWidget {
   @override
@@ -63,7 +63,7 @@ class _SignUpViewState extends State<SignUpView> {
                     controller: signupEmailController,
                     keyboardType: TextInputType.emailAddress,
                     validator: (girilenDeger) {
-                      if (girilenDeger.length < 4 ||
+                      if (girilenDeger!.length < 4 ||
                           !girilenDeger.contains("@") ||
                           !girilenDeger.contains(".")) {
                         return "Please enter a valid email address !!!";
@@ -91,7 +91,7 @@ class _SignUpViewState extends State<SignUpView> {
                     controller: signupPassController,
                     keyboardType: TextInputType.visiblePassword,
                     validator: (girilenDeger) {
-                      if (girilenDeger.length < 6) {
+                      if (girilenDeger!.length < 6) {
                         return "Your password must be at least 6 digits !!!";
                       }
                     },
@@ -131,7 +131,7 @@ class _SignUpViewState extends State<SignUpView> {
                     controller: signupConfirmPassController,
                     keyboardType: TextInputType.visiblePassword,
                     validator: (girilenDeger) {
-                      if (girilenDeger.length < 6) {
+                      if (girilenDeger!.length < 6) {
                         return "Your password must be at least 6 digits !!!";
                       }
                     },
