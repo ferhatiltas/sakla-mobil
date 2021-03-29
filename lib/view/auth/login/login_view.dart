@@ -9,6 +9,16 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
+
+  final FocusNode myFocusNodeEmail = FocusNode();
+  final FocusNode myFocusNodePassword = FocusNode();
+
+  TextEditingController loginEmailController = new TextEditingController();
+  TextEditingController loginPassController = new TextEditingController();
+
+  var keyEmail = GlobalKey<FormFieldState>();
+  var keyPass = GlobalKey<FormFieldState>();
+
   bool isPasswordShow = true;
 
   @override
@@ -46,6 +56,17 @@ class _LoginViewState extends State<LoginView> {
                     height: context.height / 15,
                   ),
                   TextFormField(
+                    key: keyEmail,
+                    focusNode: myFocusNodeEmail,
+                    controller: loginEmailController,
+                    keyboardType: TextInputType.emailAddress,
+                    validator: (girilenDeger) {
+                      if (girilenDeger!.length < 4 ||
+                          !girilenDeger.contains("@") ||
+                          !girilenDeger.contains(".")) {
+                        return "Please enter a valid email address !!!";
+                      }
+                    },
                     cursorColor: Colors.white,
                     style: TextStyle(color: Colors.white, fontSize: 20),
                     decoration: InputDecoration(
@@ -63,6 +84,15 @@ class _LoginViewState extends State<LoginView> {
                     height: context.height / 50,
                   ),
                   TextFormField(
+                    key: keyPass,
+                    focusNode: myFocusNodePassword,
+                    controller: loginPassController,
+                    keyboardType: TextInputType.visiblePassword,
+                    validator: (girilenDeger) {
+                      if (girilenDeger!.length < 6) {
+                        return "Your password must be at least 6 digits !!!";
+                      }
+                    },
                     cursorColor: Colors.white,
                     obscureText: isPasswordShow,
                     style: TextStyle(color: Colors.white, fontSize: 20),
@@ -86,7 +116,7 @@ class _LoginViewState extends State<LoginView> {
                         borderSide: BorderSide(color: Color(0xff404993)),
                       ),
                       focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
+        borderSide: BorderSide(color: Colors.white),
                       ),
                     ),
                   ),
