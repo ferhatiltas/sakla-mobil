@@ -12,8 +12,8 @@ class _SignUpViewState extends State<SignUpView> {
   final FocusNode myFocusNodePassword = FocusNode();
   final FocusNode myFocusNodeConfirmPassword = FocusNode();
 
-  TextEditingController signupEmailController =  TextEditingController();
-  TextEditingController signupPassController =  TextEditingController();
+  TextEditingController signupEmailController = TextEditingController();
+  TextEditingController signupPassController = TextEditingController();
   TextEditingController signupConfirmPassController = TextEditingController();
 
   var keyEmail = GlobalKey<FormFieldState>();
