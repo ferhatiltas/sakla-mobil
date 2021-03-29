@@ -12,10 +12,9 @@ class _SignUpViewState extends State<SignUpView> {
   final FocusNode myFocusNodePassword = FocusNode();
   final FocusNode myFocusNodeConfirmPassword = FocusNode();
 
-  TextEditingController signupEmailController = new TextEditingController();
-  TextEditingController signupPassController = new TextEditingController();
-  TextEditingController signupConfirmPassController =
-      new TextEditingController();
+  TextEditingController signupEmailController =  TextEditingController();
+  TextEditingController signupPassController =  TextEditingController();
+  TextEditingController signupConfirmPassController = TextEditingController();
 
   var keyEmail = GlobalKey<FormFieldState>();
   var keyPass = GlobalKey<FormFieldState>();
@@ -64,9 +63,9 @@ class _SignUpViewState extends State<SignUpView> {
                     keyboardType: TextInputType.emailAddress,
                     validator: (girilenDeger) {
                       if (girilenDeger!.length < 4 ||
-                          !girilenDeger.contains("@") ||
-                          !girilenDeger.contains(".")) {
-                        return "Please enter a valid email address !!!";
+                          !girilenDeger.contains('@') ||
+                          !girilenDeger.contains('.')) {
+                        return 'Please enter a valid email address !!!';
                       }
                     },
                     cursorColor: Colors.white,
@@ -92,7 +91,7 @@ class _SignUpViewState extends State<SignUpView> {
                     keyboardType: TextInputType.visiblePassword,
                     validator: (girilenDeger) {
                       if (girilenDeger!.length < 6) {
-                        return "Your password must be at least 6 digits !!!";
+                        return 'Your password must be at least 6 digits !!!';
                       }
                     },
                     cursorColor: Colors.white,
@@ -132,7 +131,7 @@ class _SignUpViewState extends State<SignUpView> {
                     keyboardType: TextInputType.visiblePassword,
                     validator: (girilenDeger) {
                       if (girilenDeger!.length < 6) {
-                        return "Your password must be at least 6 digits !!!";
+                        return 'Your password must be at least 6 digits !!!';
                       }
                     },
                     cursorColor: Colors.white,

@@ -13,8 +13,8 @@ class _LoginViewState extends State<LoginView> {
   final FocusNode myFocusNodeEmail = FocusNode();
   final FocusNode myFocusNodePassword = FocusNode();
 
-  TextEditingController loginEmailController = new TextEditingController();
-  TextEditingController loginPassController = new TextEditingController();
+  TextEditingController loginEmailController =  TextEditingController();
+  TextEditingController loginPassController = TextEditingController();
 
   var keyEmail = GlobalKey<FormFieldState>();
   var keyPass = GlobalKey<FormFieldState>();
@@ -62,9 +62,9 @@ class _LoginViewState extends State<LoginView> {
                     keyboardType: TextInputType.emailAddress,
                     validator: (girilenDeger) {
                       if (girilenDeger!.length < 4 ||
-                          !girilenDeger.contains("@") ||
-                          !girilenDeger.contains(".")) {
-                        return "Please enter a valid email address !!!";
+                          !girilenDeger.contains('@') ||
+                          !girilenDeger.contains('.')) {
+                        return 'Please enter a valid email address !!!';
                       }
                     },
                     cursorColor: Colors.white,
@@ -90,7 +90,7 @@ class _LoginViewState extends State<LoginView> {
                     keyboardType: TextInputType.visiblePassword,
                     validator: (girilenDeger) {
                       if (girilenDeger!.length < 6) {
-                        return "Your password must be at least 6 digits !!!";
+                        return 'Your password must be at least 6 digits !!!';
                       }
                     },
                     cursorColor: Colors.white,
