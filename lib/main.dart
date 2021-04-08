@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'core/init/navigation/navigation_route.dart';
+import 'core/init/navigation/navigation_service.dart';
 import 'view/auth/splash_view.dart';
-import 'package:dot_navigation_bar/dot_navigation_bar.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -14,7 +16,8 @@ class MyApp extends StatelessWidget {
       title: 'Sakla',
       theme: ThemeData(),
       home: SplshView(),
-
+      onGenerateRoute: NavigationRoute.instance.generateRoute,
+      navigatorKey: NavigationService.instance.navigatorKey,
     );
   }
 }

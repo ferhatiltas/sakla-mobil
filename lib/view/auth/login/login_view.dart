@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sakla/core/constants/navigation/navigation_constants.dart';
+import 'package:sakla/core/init/navigation/navigation_service.dart';
 import 'package:sakla/view/baseView/base_view.dart';
 
 import '../../../core/components/bezier_container.dart';
@@ -10,8 +12,10 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  final FocusNode myFocusNodeEmail = FocusNode();
-  final FocusNode myFocusNodePassword = FocusNode();
+  NavigationService navigationService = NavigationService.instance;
+
+  FocusNode myFocusNodeEmail = FocusNode();
+  FocusNode myFocusNodePassword = FocusNode();
 
   TextEditingController loginEmailController = TextEditingController();
   TextEditingController loginPassController = TextEditingController();
@@ -167,7 +171,7 @@ class _LoginViewState extends State<LoginView> {
     return InkWell(
       borderRadius: BorderRadius.circular(50),
       onTap: () {
-     Navigator.push(context, MaterialPageRoute(builder: (_) => BaseView()));
+        navigationService.navigateToPageClear(path: NavigationConstants.BASE);
       },
       child: Ink(
         width: MediaQuery.of(context).size.width / 1.1,

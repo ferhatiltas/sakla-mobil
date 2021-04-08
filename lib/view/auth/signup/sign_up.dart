@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:sakla/core/init/navigation/navigation_service.dart';
 import '../../../core/components/bezier_container.dart';
 import '../login/login_view.dart';
 import '../../../core/extension/context_extension.dart';
@@ -10,9 +11,11 @@ class SignUpView extends StatefulWidget {
 }
 
 class _SignUpViewState extends State<SignUpView> {
-  final FocusNode myFocusNodeEmail = FocusNode();
-  final FocusNode myFocusNodePassword = FocusNode();
-  final FocusNode myFocusNodeConfirmPassword = FocusNode();
+  NavigationService navigationService = NavigationService.instance;
+
+  FocusNode myFocusNodeEmail = FocusNode();
+  FocusNode myFocusNodePassword = FocusNode();
+  FocusNode myFocusNodeConfirmPassword = FocusNode();
 
   TextEditingController signupEmailController = TextEditingController();
   TextEditingController signupPassController = TextEditingController();
@@ -40,7 +43,7 @@ class _SignUpViewState extends State<SignUpView> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: context.height / 15,// 7 idi
+                      height: context.height / 15, // 7 idi
                     ),
                     buildTitle(),
                     SizedBox(
