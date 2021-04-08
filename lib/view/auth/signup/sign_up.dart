@@ -40,7 +40,7 @@ class _SignUpViewState extends State<SignUpView> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: context.height / 7,
+                      height: context.height / 15,// 7 idi
                     ),
                     buildTitle(),
                     SizedBox(

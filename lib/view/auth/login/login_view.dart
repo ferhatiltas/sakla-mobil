@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sakla/view/baseView/base_view.dart';
 
 import '../../../core/components/bezier_container.dart';
 import '../../../core/extension/context_extension.dart';
@@ -166,7 +167,7 @@ class _LoginViewState extends State<LoginView> {
     return InkWell(
       borderRadius: BorderRadius.circular(50),
       onTap: () {
-        // Navigator.push(context, MaterialPageRoute(builder: (_) => LoginView()));
+     Navigator.push(context, MaterialPageRoute(builder: (_) => BaseView()));
       },
       child: Ink(
         width: MediaQuery.of(context).size.width / 1.1,

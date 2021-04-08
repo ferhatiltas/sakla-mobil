@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'view/auth/splash_view.dart';
-
+import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 void main() {
   runApp(MyApp());
 }
@@ -13,10 +12,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Sakla',
-      theme: ThemeData(
-        fontFamily: GoogleFonts.poppins().fontFamily,
-      ),
+      theme: ThemeData(),
       home: SplshView(),
+
     );
   }
 }
