@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sakla/core/constants/navigation/navigation_constants.dart';
 import 'package:sakla/core/init/navigation/navigation_service.dart';
-import 'package:sakla/view/baseView/base_view.dart';
 
 import '../../../core/components/bezier_container.dart';
 import '../../../core/extension/context_extension.dart';
@@ -174,8 +173,8 @@ class _LoginViewState extends State<LoginView> {
         navigationService.navigateToPageClear(path: NavigationConstants.BASE);
       },
       child: Ink(
-        width: MediaQuery.of(context).size.width / 1.1,
-        height: MediaQuery.of(context).size.height / 16,
+        width: context.width / 1.1,
+        height: context.height / 16,
         decoration: BoxDecoration(
           gradient: LinearGradient(
               begin: Alignment.centerLeft,

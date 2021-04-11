@@ -10,17 +10,15 @@ class BaseView extends StatefulWidget {
   _BaseViewState createState() => _BaseViewState();
 }
 
-
 class _BaseViewState extends State<BaseView> {
-
   var _selectedTab = _SelectedTab.home;
   void _handleIndexChanged(int i) {
     setState(() {
       pageController.jumpToPage(i);
       _selectedTab = _SelectedTab.values[i];
-
     });
   }
+
   late HomeView homeView;
   late PhotoView photoView;
   late VideoView videoView;
@@ -33,58 +31,58 @@ class _BaseViewState extends State<BaseView> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    homeView=HomeView();
-    photoView=PhotoView();
-    videoView=VideoView();
-    myProfile=MyProfile();
-    allPage=[homeView,photoView,videoView,myProfile];
-    pageController=PageController();
-    selectedIndex =0;
+    homeView = HomeView();
+    photoView = PhotoView();
+    videoView = VideoView();
+    myProfile = MyProfile();
+    allPage = [homeView, photoView, videoView, myProfile];
+    pageController = PageController();
+    selectedIndex = 0;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       bottomNavigationBar: DotNavigationBar(
         currentIndex: _SelectedTab.values.indexOf(_selectedTab),
         onTap: _handleIndexChanged,
+        selectedItemColor: Color(0xff1C1E3D),
+        unselectedItemColor: Colors.blueGrey,
         items: [
           /// Home
           DotNavigationBarItem(
             icon: Icon(Icons.home),
-            selectedColor: Colors.greenAccent[600],
           ),
 
-          /// Likes
+          /// Photo
           DotNavigationBarItem(
             icon: Icon(Icons.photo),
-            selectedColor: Colors.pink[600],
           ),
 
-          /// Search
+          /// Video
           DotNavigationBarItem(
             icon: Icon(Icons.video_collection),
-            selectedColor: Colors.orange[600],
           ),
 
           /// Profile
           DotNavigationBarItem(
             icon: Icon(Icons.person),
-            selectedColor: Colors.blue[600],
           ),
         ],
       ),
-      body: PageView(controller:pageController ,onPageChanged: ( int index){
-        setState(() {
-
-          selectedIndex=index;
-        });
-      },children: allPage,),
-
+      body: PageView(
+        controller: pageController,
+        onPageChanged: (int index) {
+          setState(() {
+            selectedIndex = index;
+            _handleIndexChanged(index);
+          });
+        },
+        children: allPage,
+      ),
     );
   }
 }
-enum _SelectedTab { home, photo, video,myProfile }
+
+enum _SelectedTab { home, photo, video, myProfile }
