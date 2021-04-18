@@ -50,7 +50,7 @@ class _LoginViewState extends State<LoginView> {
                     SizedBox(
                       height: context.height / 40,
                     ),
-                    buildTextFormFieldForPassword(),
+                    buildTextFormFieldForPassword(context),
                     SizedBox(
                       height: context.height / 40,
                     ),
@@ -102,7 +102,7 @@ class _LoginViewState extends State<LoginView> {
     ]));
   }
 
-  TextFormField buildTextFormFieldForPassword() {
+  TextFormField buildTextFormFieldForPassword(BuildContext context) {
     return TextFormField(
       key: keyPass,
       focusNode: myFocusNodePassword,

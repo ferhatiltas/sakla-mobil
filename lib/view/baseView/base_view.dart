@@ -45,6 +45,7 @@ class _BaseViewState extends State<BaseView> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: DotNavigationBar(
+        
         currentIndex: _SelectedTab.values.indexOf(_selectedTab),
         onTap: _handleIndexChanged,
         selectedItemColor: Color(0xff1C1E3D),
