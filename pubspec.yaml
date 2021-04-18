@@ -11,12 +11,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  device_preview: ^0.7.1
+
   dot_navigation_bar: ^0.2.0
   flutter_image_compress: ^1.0.0-nullsafety
   google_fonts: ^2.0.0
   image_picker: ^0.7.4
+  multi_image_picker: ^4.8.0
   path_provider: ^2.0.1
+ 
 
 dev_dependencies:
   flutter_test:

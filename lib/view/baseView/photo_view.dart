@@ -5,6 +5,7 @@ import 'dart:typed_data';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:sakla/core/components/app_bar_container.dart';
 import 'package:sakla/core/extension/context_extension.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
@@ -15,13 +16,120 @@ class PhotoView extends StatefulWidget {
 }
 
 class _PhotoViewState extends State<PhotoView> {
-  ImageProvider? provider;
+  PickedFile? _image;
+
+  Future<void> _imgFromCamera() async {
+    try {
+      var image = await ImagePicker.platform
+          .pickImage(source: ImageSource.camera, imageQuality: 50);
+
+      setState(() {
+        _image = image;
+      });
+    } catch (e) {
+      print('Error From Camera:' + e.toString());
+    }
+  }
+
+  Future<void> _imgFromGallery() async {
+    try {
+      var image = await ImagePicker.platform
+          .pickImage(source: ImageSource.gallery, imageQuality: 50);
+
+      setState(() {
+        _image = image;
+      });
+    } catch (e) {
+      print('Error From Galery:' + e.toString());
+    }
+  }
+
+  void _showPicker(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return SafeArea(
+            child: Container(
+              child: Wrap(
+                children: <Widget>[
+                  ListTile(
+                      leading: Icon(Icons.photo_library),
+                      title: Text('Photo Library'),
+                      onTap: () {
+                        _imgFromGallery();
+                        Navigator.of(context).pop();
+                      }),
+                  ListTile(
+                    leading: Icon(Icons.photo_camera),
+                    title: Text('Camera'),
+                    onTap: () {
+                      _imgFromCamera();
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
       body: Column(
-        children: [buildAppBar(), Expanded(flex: 4, child: Container())],
+        children: [
+          buildAppBar(),
+          Expanded(
+              flex: 4,
+              child: Padding(
+                padding:
+                    EdgeInsets.only(top: 10, right: 5, left: 5, bottom: 10),
+                child: Container(
+                  height: context.height,
+                  width: context.width,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20),
+                        bottomLeft: Radius.circular(20),
+                        bottomRight: Radius.circular(20)),
+                    color: Colors.grey[200],
+                  ),
+                  child: Column(
+                    children: [
+                      Center(
+                        child: GestureDetector(
+                          onTap: () {
+                            _showPicker(context);
+                          },
+                          child: CircleAvatar(
+                            radius: 55,
+                            backgroundColor: Color(0xffFDCF09),
+                            child: _image != null
+                                ? Semantics(
+                                    child: Image.file(File(_image!.path)),
+                                    label: 'image_picker_example_picked_image')
+                                : Container(
+                                    decoration: BoxDecoration(
+                                        color: Colors.grey[200],
+                                        borderRadius:
+                                            BorderRadius.circular(50)),
+                                    width: 100,
+                                    height: 100,
+                                    child: Icon(
+                                      Icons.camera_alt,
+                                      color: Colors.grey[800],
+                                    ),
+                                  ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ))
+        ],
       ),
     );
   }
@@ -76,7 +184,7 @@ class _PhotoViewState extends State<PhotoView> {
     if (result == null) return;
 
     ImageProvider provider = MemoryImage(result);
-    this.provider = provider;
+    //this.provider = provider;
     setState(() {});
   }
 
