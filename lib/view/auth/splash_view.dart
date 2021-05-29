@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
+import 'package:sakla/core/constants/navigation/navigation_constants.dart';
 
 import '../../core/components/bezier_container.dart';
 import '../../core/extension/context_extension.dart';
@@ -66,7 +68,9 @@ class SplashView extends StatelessWidget {
       color: Colors.white.withOpacity(0.0),
       child: InkWell(
         borderRadius: BorderRadius.circular(50),
-        onTap: () {},
+        onTap: () {
+          Get.toNamed(NavigationConstants.LOGIN);
+        },
         child: Ink(
           width: context.width / 1.1,
           height: context.height / 16,
@@ -98,7 +102,9 @@ class SplashView extends StatelessWidget {
   Widget buildRegisterButton(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(50),
-      onTap: () {},
+      onTap: () {
+        Get.toNamed(NavigationConstants.SIGN_UP);
+      },
       child: Ink(
         height: context.height / 16,
         width: context.width / 1.1,

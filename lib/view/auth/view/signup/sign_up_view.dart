@@ -10,7 +10,6 @@ class SignUpView extends StatefulWidget {
 }
 
 class _SignUpViewState extends State<SignUpView> {
-
   FocusNode myFocusNodeEmail = FocusNode();
   FocusNode myFocusNodePassword = FocusNode();
   FocusNode myFocusNodeConfirmPassword = FocusNode();
