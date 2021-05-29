@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
-import 'package:sakla/core/constants/navigation/navigation_constants.dart';
 
-import '../../core/components/bezier_container.dart';
-import '../../core/extension/context_extension.dart';
+import '../../../core/components/bezier_container.dart';
+import '../../../core/constants/navigation/navigation_constants.dart';
+import '../../../core/extension/context_extension.dart';
 
 class SplashView extends StatelessWidget {
   @override
@@ -13,50 +13,49 @@ class SplashView extends StatelessWidget {
       body: Container(
         height: context.height,
         child: Stack(
-          children: [
-            Positioned(child: BezierContainer()),
-            SingleChildScrollView(
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: context.height / 8,
-                  ),
-                  Center(
-                    child: Image.asset(
-                      'assets/image/splash.png',
-                      height: context.height / 3,
-                    ),
-                  ),
-                  SizedBox(
-                    height: context.height / 20,
-                  ),
-                  Text(
-                    'sakla',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 50,
-                        fontWeight: FontWeight.w500),
-                  ),
-                  Text(
-                    'Tired of your large files?\nYou are in the right place!',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                    ),
-                  ),
-                  SizedBox(
-                    height: context.height / 20,
-                  ),
-                  buildLoginButton(context),
-                  SizedBox(
-                    height: context.height / 20,
-                  ),
-                  buildRegisterButton(context),
-                ],
-              ),
-            )
-          ],
+          children: [Positioned(child: BezierContainer()), buildBody(context)],
         ),
+      ),
+    );
+  }
+
+  Widget buildBody(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          SizedBox(
+            height: context.height / 8,
+          ),
+          Center(
+            child: Image.asset(
+              'assets/image/splash.png',
+              height: context.height / 3,
+            ),
+          ),
+          SizedBox(
+            height: context.height / 20,
+          ),
+          Text(
+            'sakla',
+            style: TextStyle(
+                color: Colors.white, fontSize: 50, fontWeight: FontWeight.w500),
+          ),
+          Text(
+            'Tired of your large files?\nYou are in the right place!',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+            ),
+          ),
+          SizedBox(
+            height: context.height / 20,
+          ),
+          buildLoginButton(context),
+          SizedBox(
+            height: context.height / 20,
+          ),
+          buildRegisterButton(context),
+        ],
       ),
     );
   }

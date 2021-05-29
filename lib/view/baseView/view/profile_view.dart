@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sakla/core/components/profile_app_bar_container.dart';
-import 'package:sakla/core/extension/context_extension.dart';
+
+import '../../../core/components/profile_app_bar_container.dart';
+import '../../../core/extension/context_extension.dart';
 
 class ProfileView extends StatefulWidget {
   @override

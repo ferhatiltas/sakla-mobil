@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sakla/core/components/app_bar_container.dart';
+
+import '../../../core/components/app_bar_container.dart';
 
 class VideoView extends StatefulWidget {
   @override

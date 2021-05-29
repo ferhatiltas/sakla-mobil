@@ -1,29 +1,12 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:sakla/core/components/bezier_container.dart';
-import 'package:sakla/core/extension/context_extension.dart';
-import '../login/login_view.dart';
+import 'package:get/get.dart';
+import 'package:sakla/view/auth/controller/sign_up_controller.dart';
+import '../../../core/components/bezier_container.dart';
+import 'login_view.dart';
 
-class SignUpView extends StatefulWidget {
-  @override
-  _SignUpViewState createState() => _SignUpViewState();
-}
-
-class _SignUpViewState extends State<SignUpView> {
-  FocusNode myFocusNodeEmail = FocusNode();
-  FocusNode myFocusNodePassword = FocusNode();
-  FocusNode myFocusNodeConfirmPassword = FocusNode();
-
-  TextEditingController signupEmailController = TextEditingController();
-  TextEditingController signupPassController = TextEditingController();
-  TextEditingController signupConfirmPassController = TextEditingController();
-
-  var keyEmail = GlobalKey<FormFieldState>();
-  var keyPass = GlobalKey<FormFieldState>();
-  var keyConfirmPass = GlobalKey<FormFieldState>();
-
-  bool isPasswordShow = true;
-
+class SignUpView extends StatelessWidget {
+  final _controller = Get.put(SignUpController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,12 +27,12 @@ class _SignUpViewState extends State<SignUpView> {
 
   Widget buildBody(BuildContext context) {
     return Padding(
-      padding: context.paddingNormal,
+      padding: EdgeInsets.all(context.height * 0.03),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            height: context.height / 15, // 7 idi
+            height: context.height / 15,
           ),
           buildTitle(),
           SizedBox(
@@ -156,86 +139,83 @@ class _SignUpViewState extends State<SignUpView> {
   }
 
   Widget buildTextFormFieldForrRePass() {
-    return TextFormField(
-      key: keyConfirmPass,
-      focusNode: myFocusNodeConfirmPassword,
-      controller: signupConfirmPassController,
-      keyboardType: TextInputType.visiblePassword,
-      validator: (input) {
-        if (input!.length < 6) {
-          return 'Your password must be at least 6 digits !!!';
-        }
-      },
-      cursorColor: Colors.white,
-      obscureText: isPasswordShow,
-      style: TextStyle(color: Colors.white, fontSize: 20),
-      decoration: InputDecoration(
-        suffix: IconButton(
-          icon: Icon(
-            isPasswordShow ? Icons.visibility : Icons.visibility_off,
-            color: Colors.white,
-          ),
-          onPressed: () {
-            setState(() {
-              isPasswordShow = !isPasswordShow;
-            });
+    return Obx(() => TextFormField(
+          key: _controller.keyConfirmPass,
+          controller: _controller.signupConfirmPassController,
+          keyboardType: TextInputType.visiblePassword,
+          validator: (input) {
+            if (input!.length < 6) {
+              return 'Your password must be at least 6 digits !!!';
+            }
           },
-        ),
-        labelText: 'Re-enter password',
-        labelStyle: TextStyle(color: Colors.white),
-        enabledBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: Color(0xff404993)),
-        ),
-        focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: Colors.white),
-        ),
-      ),
-    );
+          cursorColor: Colors.white,
+          obscureText: _controller.isPasswordShows,
+          style: TextStyle(color: Colors.white, fontSize: 20),
+          decoration: InputDecoration(
+            suffix: IconButton(
+              icon: Icon(
+                _controller.isPasswordShows
+                    ? Icons.visibility
+                    : Icons.visibility_off,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                _controller.changePasswordIcon();
+              },
+            ),
+            labelText: 'Re-enter password',
+            labelStyle: TextStyle(color: Colors.white),
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Color(0xff404993)),
+            ),
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.white),
+            ),
+          ),
+        ));
   }
 
   Widget buildTextFormFieldForPass() {
-    return TextFormField(
-      key: keyPass,
-      focusNode: myFocusNodePassword,
-      controller: signupPassController,
-      keyboardType: TextInputType.visiblePassword,
-      validator: (input) {
-        if (input!.length < 6) {
-          return 'Your password must be at least 6 digits !!!';
-        }
-      },
-      cursorColor: Colors.white,
-      obscureText: isPasswordShow,
-      style: TextStyle(color: Colors.white, fontSize: 20),
-      decoration: InputDecoration(
-        suffix: IconButton(
-          icon: Icon(
-            isPasswordShow ? Icons.visibility : Icons.visibility_off,
-            color: Colors.white,
-          ),
-          onPressed: () {
-            setState(() {
-              isPasswordShow = !isPasswordShow;
-            });
+    return Obx(() => TextFormField(
+          key: _controller.keyPass,
+          controller: _controller.signupPassController,
+          keyboardType: TextInputType.visiblePassword,
+          validator: (input) {
+            if (input!.length < 6) {
+              return 'Your password must be at least 6 digits !!!';
+            }
           },
-        ),
-        labelText: 'Password',
-        labelStyle: TextStyle(color: Colors.white),
-        enabledBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: Color(0xff404993)),
-        ),
-        focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: Colors.white),
-        ),
-      ),
-    );
+          cursorColor: Colors.white,
+          obscureText: _controller.isPasswordShows,
+          style: TextStyle(color: Colors.white, fontSize: 20),
+          decoration: InputDecoration(
+            suffix: IconButton(
+              icon: Icon(
+                _controller.isPasswordShows
+                    ? Icons.visibility
+                    : Icons.visibility_off,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                _controller.changePasswordIcon();
+              },
+            ),
+            labelText: 'Password',
+            labelStyle: TextStyle(color: Colors.white),
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Color(0xff404993)),
+            ),
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.white),
+            ),
+          ),
+        ));
   }
 
   Widget buildTextFormFieldForEmail() {
     return TextFormField(
-      key: keyEmail,
-      focusNode: myFocusNodeEmail,
-      controller: signupEmailController,
+      key: _controller.keyEmail,
+      controller: _controller.signupEmailController,
       keyboardType: TextInputType.emailAddress,
       validator: (input) {
         if (input!.length < 4 || !input.contains('@') || !input.contains('.')) {

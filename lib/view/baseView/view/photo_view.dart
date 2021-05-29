@@ -1,10 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_image_compress/flutter_image_compress.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:sakla/core/components/app_bar_container.dart';
-import 'package:sakla/core/extension/context_extension.dart';
-import 'package:path_provider/path_provider.dart' as path_provider;
+
+import '../../../core/components/app_bar_container.dart';
 
 class PhotoView extends StatefulWidget {
   @override
@@ -12,8 +9,6 @@ class PhotoView extends StatefulWidget {
 }
 
 class _PhotoViewState extends State<PhotoView> {
-  PickedFile? _image;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

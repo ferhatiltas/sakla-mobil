@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:sakla/core/extension/context_extension.dart';
 
+import '../extension/context_extension.dart';
+
+// ignore: must_be_immutable
 class ProfileAppBar extends StatelessWidget {
   Widget? child;
   ProfileAppBar({this.child});

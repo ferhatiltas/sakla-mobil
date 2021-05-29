@@ -1,8 +1,9 @@
 import 'package:get/route_manager.dart';
-import 'package:sakla/core/constants/navigation/navigation_constants.dart';
-import 'package:sakla/view/auth/view/login/login_view.dart';
-import 'package:sakla/view/auth/view/signup/sign_up_view.dart';
-import 'package:sakla/view/baseview/base_view.dart';
+
+import '../../../view/auth/view/login_view.dart';
+import '../../../view/auth/view/sign_up_view.dart';
+import '../../../view/baseview/base_view.dart';
+import '../../constants/navigation/navigation_constants.dart';
 
 class AppPages {
   static final pages = [

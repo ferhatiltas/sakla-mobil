@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
-import 'package:sakla/core/constants/navigation/navigation_constants.dart';
-import 'package:sakla/core/init/navigation/app_pages.dart';
-import 'package:sakla/core/init/theme/theme.dart';
 
-import 'view/auth/splash_view.dart';
+import 'core/constants/navigation/navigation_constants.dart';
+import 'core/init/navigation/app_pages.dart';
+import 'core/init/theme/theme.dart';
+import 'view/auth/view/splash_view.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 
