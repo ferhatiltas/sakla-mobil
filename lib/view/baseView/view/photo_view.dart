@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sakla/view/baseview/controller/photo_controller.dart';
 
 import '../../../core/components/app_bar_container.dart';
 
@@ -9,6 +11,8 @@ class PhotoView extends StatefulWidget {
 }
 
 class _PhotoViewState extends State<PhotoView> {
+  final _controller = Get.put(PhotoController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +21,10 @@ class _PhotoViewState extends State<PhotoView> {
           buildAppBar(),
           Expanded(
             flex: 4,
-            child: Text(''),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [buildPickedVideoButton(context)],
+            ),
           )
         ],
       ),
@@ -34,6 +41,39 @@ class _PhotoViewState extends State<PhotoView> {
             style: TextStyle(
                 fontWeight: FontWeight.w600, color: Colors.white, fontSize: 25),
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildPickedVideoButton(BuildContext context) {
+    return InkWell(
+      borderRadius: BorderRadius.circular(50),
+      onTap: () {
+        _controller.selectImage();
+      },
+      child: Ink(
+        width: context.width / 1.1,
+        height: context.height / 16,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: [Color(0xff3B4183), Color(0xff515AB6)]),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              spreadRadius: 3,
+              blurRadius: 7,
+              offset: Offset(0, 3),
+            ),
+          ],
+          color: Color(0xffED7917),
+          borderRadius: BorderRadius.circular(50),
+        ),
+        child: Center(
+          child: Text('Picked Image',
+              style: TextStyle(fontSize: 30, color: Colors.white)),
         ),
       ),
     );

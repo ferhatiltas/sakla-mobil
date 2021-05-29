@@ -22,7 +22,10 @@ class LoginController extends GetxController {
     isPasswordShows = !isPasswordShows;
   }
 
+
+
   Future<void>? navigateToBaseView() {
     Get.offAllNamed(NavigationConstants.BASE);
   }
+  
 }
