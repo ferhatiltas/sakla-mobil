@@ -1,9 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:sakla/core/init/navigation/navigation_service.dart';
-import '../../../core/components/bezier_container.dart';
+import 'package:sakla/core/components/bezier_container.dart';
+import 'package:sakla/core/extension/context_extension.dart';
 import '../login/login_view.dart';
-import '../../../core/extension/context_extension.dart';
 
 class SignUpView extends StatefulWidget {
   @override
@@ -11,7 +10,6 @@ class SignUpView extends StatefulWidget {
 }
 
 class _SignUpViewState extends State<SignUpView> {
-  NavigationService navigationService = NavigationService.instance;
 
   FocusNode myFocusNodeEmail = FocusNode();
   FocusNode myFocusNodePassword = FocusNode();

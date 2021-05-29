@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
+import 'package:sakla/core/constants/navigation/navigation_constants.dart';
+import 'package:sakla/core/init/navigation/app_pages.dart';
 import 'package:sakla/core/init/theme/theme.dart';
 
-import 'core/init/navigation/navigation_route.dart';
-import 'core/init/navigation/navigation_service.dart';
 import 'view/auth/splash_view.dart';
 
 void main() {
@@ -12,13 +13,13 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Sakla',
+      initialRoute: NavigationConstants.INITIAL,
       theme: AppTheme.instance.darkTheme,
-      home: SplshView(),
-      onGenerateRoute: NavigationRoute.instance.generateRoute,
-      navigatorKey: NavigationService.instance.navigatorKey,
+      home: SplashView(),
+      getPages: AppPages.pages,
     );
   }
 }

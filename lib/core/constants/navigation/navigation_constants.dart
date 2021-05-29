@@ -1,6 +1,7 @@
 class NavigationConstants {
+  static const INITIAL = '/';
   static const LOGIN = '/login';
   static const SPLASH = '/splash';
-  static const FORGETPASS = '/forgetpass';
+  static const SIGN_UP = '/sign_up';
   static const BASE = '/base';
 }

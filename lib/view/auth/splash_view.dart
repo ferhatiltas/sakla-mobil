@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../core/components/bezier_container.dart';
 import '../../core/extension/context_extension.dart';
-import 'login/login_view.dart';
-import 'signUp/sign_up.dart';
 
-class SplshView extends StatelessWidget {
+class SplashView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,17 +59,14 @@ class SplshView extends StatelessWidget {
     );
   }
 
-  Material buildLoginButton(BuildContext context) {
+  Widget buildLoginButton(BuildContext context) {
     return Material(
       clipBehavior: Clip.antiAlias,
       borderRadius: BorderRadius.circular(50),
       color: Colors.white.withOpacity(0.0),
       child: InkWell(
         borderRadius: BorderRadius.circular(50),
-        onTap: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (_) => LoginView()));
-        },
+        onTap: () {},
         child: Ink(
           width: context.width / 1.1,
           height: context.height / 16,
@@ -100,13 +95,10 @@ class SplshView extends StatelessWidget {
     );
   }
 
-  InkWell buildRegisterButton(BuildContext context) {
+  Widget buildRegisterButton(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(50),
-      onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (_) => SignUpView()));
-      },
+      onTap: () {},
       child: Ink(
         height: context.height / 16,
         width: context.width / 1.1,

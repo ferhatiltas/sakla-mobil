@@ -16,6 +16,7 @@ class BaseViewConstants {
 
   BaseViewConstants._init();
 
+//this list for battom navigation bar items
   List<DotNavigationBarItem> get navigationBarItems => [
         /// Home
         DotNavigationBarItem(
