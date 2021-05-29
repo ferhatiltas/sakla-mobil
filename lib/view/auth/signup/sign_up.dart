@@ -37,42 +37,7 @@ class _SignUpViewState extends State<SignUpView> {
           child: Stack(
             children: [
               Positioned(child: BezierContainer()),
-              Padding(
-                padding: context.paddingNormal,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: context.height / 15, // 7 idi
-                    ),
-                    buildTitle(),
-                    SizedBox(
-                      height: context.height / 15,
-                    ),
-                    buildTextFormFieldForEmail(),
-                    SizedBox(
-                      height: context.height / 40,
-                    ),
-                    buildTextFormFieldForPass(),
-                    SizedBox(
-                      height: context.height / 40,
-                    ),
-                    buildTextFormFieldForrRePass(),
-                    SizedBox(
-                      height: context.height / 20,
-                    ),
-                    buildPrivacyPolicyText(),
-                    SizedBox(
-                      height: context.height / 30,
-                    ),
-                    buildSignUpButton(context),
-                    SizedBox(
-                      height: context.height / 30,
-                    ),
-                    buildLoginPageButton(context)
-                  ],
-                ),
-              )
+              buildBody(context)
             ],
           ),
         ),
@@ -80,7 +45,46 @@ class _SignUpViewState extends State<SignUpView> {
     );
   }
 
-  Center buildLoginPageButton(BuildContext context) {
+  Widget buildBody(BuildContext context) {
+    return Padding(
+      padding: context.paddingNormal,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            height: context.height / 15, // 7 idi
+          ),
+          buildTitle(),
+          SizedBox(
+            height: context.height / 15,
+          ),
+          buildTextFormFieldForEmail(),
+          SizedBox(
+            height: context.height / 40,
+          ),
+          buildTextFormFieldForPass(),
+          SizedBox(
+            height: context.height / 40,
+          ),
+          buildTextFormFieldForrRePass(),
+          SizedBox(
+            height: context.height / 20,
+          ),
+          buildPrivacyPolicyText(),
+          SizedBox(
+            height: context.height / 30,
+          ),
+          buildSignUpButton(context),
+          SizedBox(
+            height: context.height / 30,
+          ),
+          buildLoginPageButton(context)
+        ],
+      ),
+    );
+  }
+
+  Widget buildLoginPageButton(BuildContext context) {
     return Center(
       child: Text.rich(TextSpan(children: [
         TextSpan(
@@ -96,7 +100,7 @@ class _SignUpViewState extends State<SignUpView> {
     );
   }
 
-  Center buildPrivacyPolicyText() {
+  Widget buildPrivacyPolicyText() {
     return Center(
       child: Text.rich(
         TextSpan(children: [
@@ -121,7 +125,7 @@ class _SignUpViewState extends State<SignUpView> {
     );
   }
 
-  InkWell buildSignUpButton(BuildContext context) {
+  Widget buildSignUpButton(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(50),
       onTap: () {
@@ -154,7 +158,7 @@ class _SignUpViewState extends State<SignUpView> {
     );
   }
 
-  TextFormField buildTextFormFieldForrRePass() {
+  Widget buildTextFormFieldForrRePass() {
     return TextFormField(
       key: keyConfirmPass,
       focusNode: myFocusNodeConfirmPassword,
@@ -192,7 +196,7 @@ class _SignUpViewState extends State<SignUpView> {
     );
   }
 
-  TextFormField buildTextFormFieldForPass() {
+  Widget buildTextFormFieldForPass() {
     return TextFormField(
       key: keyPass,
       focusNode: myFocusNodePassword,
@@ -230,7 +234,7 @@ class _SignUpViewState extends State<SignUpView> {
     );
   }
 
-  TextFormField buildTextFormFieldForEmail() {
+  Widget buildTextFormFieldForEmail() {
     return TextFormField(
       key: keyEmail,
       focusNode: myFocusNodeEmail,
@@ -256,7 +260,7 @@ class _SignUpViewState extends State<SignUpView> {
     );
   }
 
-  InkWell buildLoginButton(BuildContext context) {
+  Widget buildLoginButton(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(50),
       onTap: () {},
@@ -287,7 +291,7 @@ class _SignUpViewState extends State<SignUpView> {
     );
   }
 
-  Text buildTitle() {
+  Widget buildTitle() {
     return Text.rich(TextSpan(children: [
       TextSpan(
         text: 'sakla\n',

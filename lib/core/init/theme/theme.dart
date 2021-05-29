@@ -1,17 +1,17 @@
-import 'dart:ui';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-import 'package:flutter/cupertino.dart';
+class AppTheme {
+  static AppTheme? _instance;
+  static AppTheme get instance {
+    _instance ??= _instance = AppTheme._init();
+    return _instance!;
+  }
 
-class Colors {
-  const Colors();
+  AppTheme._init();
 
-  static const Color loginGradientStart = Color(0xff76dcf1);
-  static const Color loginGradientEnd = Color(0xff004755);
-
-  static const primaryGradient = LinearGradient(
-    colors: [loginGradientStart, loginGradientEnd],
-    stops: [0.0, 1.0],
-    begin: Alignment.topCenter,
-    end: Alignment.bottomCenter,
-  );
+  ThemeData get darkTheme => ThemeData(
+        fontFamily: GoogleFonts.poppins().fontFamily,
+        scaffoldBackgroundColor: Colors.grey[200],
+      );
 }
