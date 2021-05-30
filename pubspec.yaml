@@ -1,0 +1,39 @@
+name: sakla
+description: A new Flutter project.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  dot_navigation_bar: ^0.2.0
+  flutter_image_compress: ^1.0.0-nullsafety
+  get: ^4.1.4
+  google_fonts: ^2.0.0
+  image_picker: ^0.7.4
+  multi_image_picker: ^4.8.0
+  path_provider: ^2.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  pedantic: ^1.11.0
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/image/
+    - assets/font/
+
+  fonts:
+    - family: stcrmit
+      fonts:
+        - asset: assets/font/stcrmit.ttf
