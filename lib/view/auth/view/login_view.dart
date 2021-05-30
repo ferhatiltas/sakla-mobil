@@ -1,16 +1,18 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
+import 'package:sakla/services/api_services.dart';
+import 'package:sakla/view/auth/shared/shared_pref.dart';
 
 import '../../../core/components/bezier_container.dart';
 import '../controller/login_controller.dart';
-import 'package:http/http.dart' as http;
 
 class LoginView extends StatelessWidget {
   final _controller = Get.put(LoginController());
+  final bringUserInfoAPI = ApiServices();
+  var shardPrefs = SharedPrefs();
   var userPassword;
+  var responseBodyLength;
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +98,7 @@ class LoginView extends StatelessWidget {
 
   Widget buildTextFormFieldForPassword(BuildContext context) {
     return Obx(() => TextFormField(
-          key: _controller.keyPass,
+          key: _controller.keyPassLogin,
           controller: _controller.loginPassController,
           keyboardType: TextInputType.visiblePassword,
           validator: (String? input) {
@@ -133,11 +135,11 @@ class LoginView extends StatelessWidget {
 
   Widget buildTextFormFieldForEmail() {
     return TextFormField(
-      key: _controller.keyEmail,
+      key: _controller.keyEmailLogin,
       controller: _controller.loginEmailController,
       keyboardType: TextInputType.emailAddress,
       validator: (String? input) {
-        if (input!.isEmail) {
+        if (input!.length < 4 || !input.contains('@') || !input.contains('.')) {
           return 'Please enter a valid email address !!!';
         }
       },
@@ -160,12 +162,36 @@ class LoginView extends StatelessWidget {
     return InkWell(
       borderRadius: BorderRadius.circular(50),
       onTap: () {
+        if (_controller.keyEmailLogin.currentState!.validate() &&
+            _controller.keyPassLogin.currentState!.validate()) {
+          _controller.keyEmailLogin.currentState!.save();
+          _controller.keyPassLogin.currentState!.save();
 
+          bringUserInfoAPI
+              .bringUserInfoWithEmailSakla(
+                  _controller.loginEmailController.text.toString())
+              .then((value) {
+            responseBodyLength = bringUserInfoAPI.responseBodyLength;
+            userPassword = bringUserInfoAPI.userPassword;
 
-         bringPasswordWithEmailSakla().then((value) {
-           //_controller.navigateToBaseView();
-         });
-
+            if (responseBodyLength < 5) {
+              Get.snackbar('ERROR', 'Please enter valid email !!!',
+                  backgroundColor: Colors.red, colorText: Colors.white);
+            } else {
+              if (userPassword == _controller.loginPassController.text) {
+                shardPrefs
+                    .saveDataPrefs(
+                        _controller.loginEmailController.text.toString())
+                    .then((value) {
+                  _controller.navigateToBaseView();
+                });
+              } else {
+                Get.snackbar('ERROR', 'Wrong password entry !!!',
+                    backgroundColor: Colors.red, colorText: Colors.white);
+              }
+            }
+          });
+        }
       },
       child: Ink(
         width: context.width / 1.1,
@@ -194,14 +220,27 @@ class LoginView extends StatelessWidget {
     );
   }
 
-  Future bringPasswordWithEmailSakla() async {
-    int id = 0;
-
-    var response = await http.get(
-        Uri.parse(
-            'https://expers-68-market-back-end.herokuapp.com/api/v1/bringPasswordWithEmailSakla/${_controller.loginEmailController.text}'));
-    userPassword=jsonDecode(response.body)[0]['password'].toString();
-    print(jsonDecode(response.body)[0]['password'].toString());
-    print(response.statusCode);
-  }
+  // Future bringUserInfoWithEmailSakla() async {
+  //   int id = 0;
+  //
+  //   var response = await http.post(
+  //       Uri.parse(
+  //           'https://expers-68-market-back-end.herokuapp.com/api/v1/bringUserInfoWithEmailSakla/${_controller.loginEmailController.text}'),
+  //       body:{
+  //         'id': id.toString(),
+  //         'name_surname	': 'id.toString()',
+  //         'email': 'id.toString()',
+  //         'password': 'widget.sessionID.toString()',
+  //       } );
+  //   print(response.body);
+  //   print(response.statusCode);
+  //   responseBodyLength=response.body.length;
+  //   if(response.body.toString().length>2) {
+  //     userPassword = jsonDecode(response.body)[0]['password'].toString();
+  //     print(jsonDecode(response.body)[0]['name_surname'].toString());
+  //     print(jsonDecode(response.body)[0]['email'].toString());
+  //     print(jsonDecode(response.body)[0]['password'].toString());
+  //   }
+  //
+  // }
 }

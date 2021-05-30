@@ -1,10 +1,14 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:sakla/services/api_services.dart';
 import 'package:sakla/view/auth/controller/sign_up_controller.dart';
+import 'package:sakla/view/auth/shared/shared_pref.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../core/components/bezier_container.dart';
 import 'login_view.dart';
 import 'package:http/http.dart' as http;
@@ -13,6 +17,8 @@ class SignUpView extends StatelessWidget {
   var selectedImage;
 
   final _controller = Get.put(SignUpController());
+  final bringUserInfoAPI=ApiServices();
+  var shardPrefs=SharedPrefs();
 
   @override
   Widget build(BuildContext context) {
@@ -98,21 +104,7 @@ class SignUpView extends StatelessWidget {
    // createNewUserPost();
   }
 
-  Future createNewUserPost() async {
-    int id = 0;
 
-    var response = await http.post(
-        Uri.parse(
-            'https://expers-68-market-back-end.herokuapp.com/api/v1/createNewUserSakla'),
-        body: {
-          'id': id.toString(),
-          'name_surname': '${_controller.signupNameAndSurnameController.text}',
-          'email': '${_controller.signupEmailController.text}',
-          'password': '${_controller.signupPassController.text}',
-        });
-    print(response.body);
-    print(response.statusCode);
-  }
 
 
 
@@ -156,20 +148,20 @@ class SignUpView extends StatelessWidget {
           _controller.keyPass.currentState!.save();
           _controller.keyConfirmPass.currentState!.save();
           if(_controller.signupPassController.text ==_controller.signupConfirmPassController.text){
-            print('Sifreler esit');
 
-            createNewUserPost().then((value) {
-
-              _controller.navigateToBaseView();
+            bringUserInfoAPI.createNewUserPost(_controller.signupNameAndSurnameController.text.toString(),
+                _controller.signupEmailController.text.toString(),
+                _controller.signupPassController.text.toString()).then((value) {
+              bringUserInfoAPI.bringUserInfoWithEmailSakla(_controller.signupEmailController.text.toString()).then((value) {
+                shardPrefs.saveDataPrefs(_controller.signupEmailController.text.toString()).then((value) {
+                  _controller.navigateToBaseView();
+                });
+              });
             });
-
           }else{
-
             Get.snackbar('Error', 'Passwords must be equal');
           }
         }
-
-
 
       },
       child: Ink(
@@ -369,4 +361,6 @@ class SignUpView extends StatelessWidget {
       ),
     ]));
   }
+
+
 }

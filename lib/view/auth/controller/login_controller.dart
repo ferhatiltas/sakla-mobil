@@ -10,8 +10,8 @@ class LoginController extends GetxController {
   TextEditingController loginEmailController = TextEditingController();
   TextEditingController loginPassController = TextEditingController();
 
-  GlobalKey keyEmail = GlobalKey<FormFieldState>();
-  GlobalKey keyPass = GlobalKey<FormFieldState>();
+  final keyEmailLogin = GlobalKey<FormFieldState>();
+  final keyPassLogin = GlobalKey<FormFieldState>();
 
   var isPasswordShow = true.obs;
   get isPasswordShows => isPasswordShow.value;

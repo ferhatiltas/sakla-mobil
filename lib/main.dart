@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
+import 'package:sakla/view/splashScreen/splash_screen.dart';
 
 import 'core/constants/navigation/navigation_constants.dart';
 import 'core/init/navigation/app_pages.dart';
 import 'core/init/theme/theme.dart';
-import 'view/auth/view/splash_view.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await LocaleManager.prefrenceInit();
   runApp(MyApp());
 }
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       title: 'Sakla',
       initialRoute: NavigationConstants.INITIAL,
       theme: AppTheme.instance.darkTheme,
-      home: SplashView(),
+      home: SplashScreen(), //SplashView(),
       getPages: AppPages.pages,
     );
   }

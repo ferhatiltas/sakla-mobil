@@ -1,5 +1,6 @@
 import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:sakla/view/auth/shared/shared_pref.dart';
 
 import '../../view/baseView/view/photo_view.dart';
 import '../../view/baseView/view/profile_view.dart';
@@ -10,8 +11,15 @@ import '../../view/baseView/view/video_view.dart';
 enum SelectedTab { home, photo, video, myProfile }
 
 class BaseViewConstants {
+
+
+
   static BaseViewConstants? _instance;
   static BaseViewConstants get instance {
+
+
+
+
     _instance ??= _instance = BaseViewConstants._init();
     return _instance!;
   }
@@ -36,5 +44,9 @@ class BaseViewConstants {
         ),
       ];
 
-  List<Widget> get allPage => [PhotoView(), VideoView(), ProfileView()];
+  List<Widget> get allPage {
+
+
+    return [PhotoView(), VideoView(), ProfileView('asdas')];
+  }
 }
